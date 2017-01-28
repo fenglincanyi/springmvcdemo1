@@ -1,0 +1,61 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+
+    <!--&lt;!&ndash; 处理器映射器 2种：&ndash;&gt;-->
+    <!--<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>-->
+        <!--&lt;!&ndash; 处理器映射器，可以多个存在 &ndash;&gt;-->
+    <!--<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->
+        <!--<property name="mappings">-->
+            <!--<props>-->
+                <!--<prop key="queryItems1.action">itemsController1</prop>-->
+                <!--<prop key="queryItems2.action">itemsController1</prop>-->
+                <!--<prop key="queryItems3.action">itemsController2</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+         <!-- 注解的 映射器、适配器-->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>-->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>-->
+
+
+    <!-- 此配置默认 设置了 映射器、适配器，而且加载了许多的参数绑定，如json的自动转换
+        开发时候使用它 ：   -->
+    <mvc:annotation-driven />
+
+
+
+    <!--&lt;!&ndash; 处理器适配器 2种&ndash;&gt;-->
+    <!--<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>-->
+        <!--&lt;!&ndash; 可以同时 存在 &ndash;&gt;-->
+    <!--&lt;!&ndash; 因为： return (handler instanceof HttpRequestHandler); 所以要实现HttpRequestHandler &ndash;&gt;-->
+    <!--<bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>-->
+
+
+
+    <!-- 视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+
+
+    <!--&lt;!&ndash; controller (即handler)&ndash;&gt;-->
+    <!--<bean id="itemsController1" name="/queryItems.action" class="com.gjr.controller.ItemsController"/>-->
+    <!--<bean id="itemsController2" name="/queryItems2.action" class="com.gjr.controller.ItemsController1"/>-->
+
+
+    <!-- 可以直接使用扫描-->
+    <context:component-scan base-package="com.gjr.controller"/>
+</beans>

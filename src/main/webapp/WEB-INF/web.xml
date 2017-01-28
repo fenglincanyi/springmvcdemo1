@@ -1,0 +1,31 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+    <display-name>springmvcdemo1</display-name>
+
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+        <!-- 设置 springmvc 的配置文件 -->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springmvcConfig.xml</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <!-- 访问 action 结尾的，由 DispatcherServlet 来解析-->
+
+        <!--http://localhost:8080/springmvcdemo1/queryItems.action-->
+        <!--<url-pattern>*.action</url-pattern>-->
+
+        <!--http://localhost:8080/springmvcdemo1/queryItems-->
+        <url-pattern>/</url-pattern>
+
+    </servlet-mapping>
+
+</web-app>
